@@ -2,6 +2,7 @@
 WITH working_tbl AS (
 	SELECT location, date, total_cases :: float, new_cases, total_deaths :: float, population
 	FROM deaths
+	WHERE continent IS NOT NULL
 	ORDER BY 1,2)
 
 --Shows likelihood of dying from Covid in the United States
