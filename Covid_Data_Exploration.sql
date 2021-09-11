@@ -47,3 +47,13 @@ JOIN vaccinations v
 ON d.location = v.location AND d.date = v.date
 WHERE new_vaccinations IS NOT NULL
 WINDOW loc_date_win AS (PARTITION BY d.location ORDER BY d.location, d.date)
+
+--Create a view
+CREATE VIEW RollingVaccinations AS
+SELECT d.location, d.date, population, new_vaccinations,
+SUM(new_vaccinations) OVER loc_date_win AS rolling_vac
+FROM deaths d
+JOIN vaccinations v
+ON d.location = v.location AND d.date = v.date
+WHERE new_vaccinations IS NOT NULL AND d.continent IS NOT NULL
+WINDOW loc_date_win AS (PARTITION BY d.location ORDER BY d.location, d.date)
