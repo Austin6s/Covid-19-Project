@@ -5,13 +5,13 @@ WITH working_tbl AS (
 	WHERE continent IS NOT NULL
 	ORDER BY 1,2)
 
---Shows likelihood of dying from Covid in the United States
+--Shows likelihood of dying from Covid in the United States by day
 SELECT location, date, total_cases, total_deaths, total_deaths/total_cases AS chance_of_death
 FROM working_tbl
 WHERE location LIKE 'United States'
 ORDER BY 2
 
---Show percentage of people with Covid in the United States
+--Show percentage of people with Covid in the United States by day
 SELECT date, population, total_cases, total_cases/population AS infection_rate
 FROM working_tbl
 WHERE location LIKE 'United States'
