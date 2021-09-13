@@ -39,3 +39,12 @@ FROM deaths
 WHERE continent IS NOT NULL AND population IS NOT NULL
 GROUP BY 1, 2
 ORDER BY 4 DESC
+
+--TABLE 4
+--Infection rate by country per day (eliminating nulls) (will use this one for Tableau)
+SELECT location, population, date, total_cases highest_inf_count, (CAST(MAX(total_cases) AS FLOAT)/CAST(population AS FLOAT)*100) :: REAL infection_rate
+FROM deaths
+WHERE continent IS NOT NULL
+GROUP BY 1, 2, 3, 4
+HAVING (CAST(MAX(total_cases) AS FLOAT)/CAST(population AS FLOAT)*100) :: REAL IS NOT NULL
+ORDER BY 5 DESC
