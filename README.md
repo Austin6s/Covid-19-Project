@@ -26,5 +26,5 @@ Tableau Table 4.csv,
 
 
 ### Credits
-https://ourworldindata.org/covid-deaths
+https://ourworldindata.org/covid-deaths </br>
 AlextheAnalyst on YouTube
